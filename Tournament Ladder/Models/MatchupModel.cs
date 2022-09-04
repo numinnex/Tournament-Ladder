@@ -9,13 +9,25 @@ namespace Tournament_Ladder.Models
 {
     public class MatchupModel
     {
+        /// <summary>
+        /// Id of matchup
+        /// </summary>
         public int Id { get; set; }
         /// <summary>
         /// Teams playing in current matchup
         /// </summary>
         public List<ITeam>? TeamsCompeting { get; set; }
+        /// <summary>
+        /// Winner of matchup
+        /// </summary>
         public ITeam? Winner { get; set; } = null;
+        /// <summary>
+        /// Round of matchup
+        /// </summary>
         public int Round { get; set; }
+        /// <summary>
+        /// Is the matchup completed
+        /// </summary>
         public bool Completed { get; set; } = false;
 
         public string DisplayName

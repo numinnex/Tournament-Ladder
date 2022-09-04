@@ -11,11 +11,21 @@ namespace Tournament_Ladder
 
     public static class LadderCreation
     {
+        /// <summary>
+        /// Randomize the team order method
+        /// </summary>
+        /// <param name="teams"></param>
+        /// <returns></returns>
         private static List<ITeam> RandomizeTeams(List<ITeam> teams)
         {
             return teams.OrderBy(x => Guid.NewGuid()).ToList();
         }
 
+        /// <summary>
+        /// Create the teams method
+        /// </summary>
+        /// <param name="teamsCount"></param>
+        /// <returns></returns>
         private static List<ITeam> CreateTeams(int teamsCount)
         {
             List<ITeam> teams = new List<ITeam>();
@@ -30,7 +40,11 @@ namespace Tournament_Ladder
             return teams;
 
         }
-
+        /// <summary>
+        /// Created the matchups 
+        /// </summary>
+        /// <param name="teamsCount"></param>
+        /// <returns></returns>
         public static List<MatchupModel> CreateMatchups(int teamsCount)
         {
             
@@ -48,9 +62,7 @@ namespace Tournament_Ladder
             /// Create MatchupModels
             /// </summary>
             /// <returns></returns>
-
             int mIdCounter = 1;
-
 
             for (int i = 0; i < teams.Count(); i+= 2)
             {
@@ -73,7 +85,11 @@ namespace Tournament_Ladder
             return Matchups;
 
         }
-
+        /// <summary>
+        /// Create the tournament ladder
+        /// </summary>
+        /// <param name="teamsCount"></param>
+        /// <returns></returns>
         public static Tree CreateLadder(int teamsCount)
         {
             List<MatchupModel> Matchups = CreateMatchups(teamsCount);

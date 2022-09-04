@@ -12,10 +12,17 @@ namespace Tournament_Ladder
 {
     public static class TournamentLogic
     {
+        /// <summary>
+        /// Global variables used in TournametBrackets Form
+        /// </summary>
         public static List<ITeam> Teams = new();
         public static List<int> Rounds = new();
         public static List<MatchupModel> Matchups = new();
 
+        /// <summary>
+        /// Initialize the tournament 
+        /// </summary>
+        /// <param name="ladder"></param>
         public static void InitializeTournament(Tree ladder)
         {
 
@@ -25,7 +32,10 @@ namespace Tournament_Ladder
 
             CollectRounds(ladder);
         }
-
+        /// <summary>
+        /// Update matchups for rounds other than first 
+        /// </summary>
+        /// <param name="ladder"></param>
         public static void UpdateMatchups(Tree ladder)
         {
             Matchups.Clear();
@@ -36,7 +46,10 @@ namespace Tournament_Ladder
 
         }
 
-
+        /// <summary>
+        /// Delegate method used to advance teams to the next round matchup
+        /// </summary>
+        /// <param name="root"></param>
         private static void AdvanceTeams(Node root)
         {
             if (root == null)
@@ -67,7 +80,10 @@ namespace Tournament_Ladder
                 return;
         }
 
-
+        /// <summary>
+        /// Collects the teams that are still competing in the tournament
+        /// </summary>
+        /// <param name="mu"></param>
         private static void CollectTeams(List<MatchupModel> mu)
         {
 
@@ -86,6 +102,10 @@ namespace Tournament_Ladder
         }
 
 
+        /// <summary>
+        /// Collects the matchup list used as display property for matchup listbox in TournamentBrackets form
+        /// </summary>
+        /// <param name="root"></param>
         private static void SetupMatchups(Node root)
         {
             if (!root.Data.Completed)
@@ -94,7 +114,10 @@ namespace Tournament_Ladder
         }
 
 
-
+        /// <summary>
+        /// Collect rounds for the rounds dropdown in TournamentBrackets form
+        /// </summary>
+        /// <param name="ladder"></param>
         private static void CollectRounds(Tree ladder)
         {
             int maxRound = ladder.Height();
@@ -103,6 +126,10 @@ namespace Tournament_Ladder
 
         }
 
+        /// <summary>
+        /// Setups the matchup rounds
+        /// </summary>
+        /// <param name="root"></param>
         private static void SetupRounds(Node root)
         {
             root.Data.Round = root.Depth();
