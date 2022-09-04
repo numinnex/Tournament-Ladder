@@ -11,6 +11,6 @@
 `Tournament Ladder` is a rig for creating a tournament with power of 2 team count 
 
 # TODO
-1.Change the binary tree structure to operate on matchups instead of teams<br>
+<s>1.Change the binary tree structure to operate on matchups instead of teams</s><br>
 2.Look into expanding the system to support seeding and double eliminations<br>
 
