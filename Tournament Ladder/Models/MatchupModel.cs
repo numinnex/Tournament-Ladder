@@ -26,27 +26,33 @@ namespace Tournament_Ladder.Models
             {
                 string output = "";
 
-                foreach (var tm in TeamsCompeting)
+                if (TeamsCompeting == null)
+                    output = $"NULL Round - {Round} muId {Id}";
+
+                if (TeamsCompeting != null)
                 {
-                    if (tm.Name != null)
+                    foreach (var tm in TeamsCompeting)
                     {
-                        if (output.Length == 0)
+                        if (tm.Name != null)
                         {
-                            output = tm.Name;
+                            if (output.Length == 0)
+                            {
+                                output = tm.Name;
+                            }
+                            else
+                            {
+                                output += $" vs {tm.Name}";
+                                output += $" Round - {Round} muID {Id}";
+                            }
                         }
                         else
                         {
-                            output += $" vs {tm.Name}";
-                            //output += $" muId_ {Id}";
+                            output = "TBD";
+                            output += $" Round - {Round} muId {Id}";
+                            break;
                         }
-                    }
-                    else
-                    {
-                        output = "TBD";
-                        //output += $" muId_ {Id}";
-                        break;
-                    }
 
+                    } 
                 }
                 return output;
 

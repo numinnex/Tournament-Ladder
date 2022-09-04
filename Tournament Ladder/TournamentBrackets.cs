@@ -18,7 +18,7 @@ namespace Tournament_Ladder
 
         private ILadderRequester _requester;
         private Tree TournamentLadder = new();
-        //private List<MatchupModel> Matchups = TournamentLogic.Matchups;
+        private List<MatchupModel> Matchups = TournamentLogic.Matchups;
         private List<MatchupModel> selectedMatchups = new();
 
         public TournamentBrackets(ILadderRequester requester)
@@ -29,8 +29,8 @@ namespace Tournament_Ladder
             TournamentLadder = _requester.LadderCompletedLadder();
             TournamentLogic.InitializeTournament(TournamentLadder);
 
-            WireUpRoundsDropdown();
-            //LoadMatchupsByRounds();
+             WireUpRoundsDropdown();
+             LoadMatchupsByRounds();
              WireUpMatchupBox();
             //WireUpTeamsBox();
 
@@ -45,20 +45,17 @@ namespace Tournament_Ladder
 
         private void LoadMatchupsByRounds()
         {
-            //    selectedMatchups.Clear();
-            //    int round = (int)roundsComboBox.SelectedItem;
-            //    foreach (var mu in Matchups)
-            //    {
-
-            //        if (mu != null)
-            //        {
-            //            if (mu.TeamsCompeting.First().Round == round)
-            //            {
-            //                selectedMatchups.Add(mu);
-            //            }
-            //        }
-            //    }
+            selectedMatchups.Clear();
+            int round = (int)roundsComboBox.SelectedItem;
+            foreach (var mu in Matchups)
+            {
+                if (mu.Round == round)
+                {
+                    selectedMatchups.Add(mu);
+                }
+            }
         }
+       
 
         private void WireUpMatchupBox()
         {
@@ -75,16 +72,16 @@ namespace Tournament_Ladder
 
         private void roundsComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //    LoadMatchupsByRounds();
-            //    WireUpMatchupBox();
-            //}
-            ///// <summary>
-            ///// Marks team one as winner
-            ///// </summary>
-            ///// <param name="sender"></param>
-            ///// <param name="e"></param>
-            ///
+            LoadMatchupsByRounds();
+            WireUpMatchupBox();
         }
+        /// <summary>
+        /// Marks team one as winner
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>   
+
+
         private void teamOneWinnerButton_Click(object sender, EventArgs e)
         {
             //    MarkTeamAsWinner(0);

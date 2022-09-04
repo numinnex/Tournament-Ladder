@@ -23,7 +23,7 @@ namespace Tournament_Ladder
         public static void InitializeTournament(Tree ladder)
         {
 
-            //ladder.PostOrder(ladder.Root, SetupRounds);
+            ladder.PostOrder(ladder.Root, SetupRounds);
             ladder.PostOrder(ladder.Root, SetupMatchups);
             //CollectTeams(Matchups);
 
@@ -119,9 +119,7 @@ namespace Tournament_Ladder
             }
             private static void SetupMatchups(Node root)
             {
-                // Matchups.Add(root);
-
-
+                 Matchups.Add(root.Data);
 
             }
 
