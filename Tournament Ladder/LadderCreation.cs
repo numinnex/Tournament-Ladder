@@ -39,7 +39,7 @@ namespace Tournament_Ladder
             /// </summary>
             /// <returns></returns>
             List<TeamModel> teams = CreateTeams(teamsCount);
-            RandomizeTeams(teams);
+            teams = RandomizeTeams(teams);
 
             List<MatchupModel> Matchups = new List<MatchupModel>();
 
@@ -63,8 +63,10 @@ namespace Tournament_Ladder
                 //tmp.TeamsCompeting.Add(teams[i + 1]);
                 tmp.Winner = null;
                 tmp.Round = 1;
-                mIdCounter++;
+                
                 tmpTeamps = new();
+                mIdCounter++;
+                Matchups.Add(tmp);
             }
 
          
@@ -93,10 +95,14 @@ namespace Tournament_Ladder
             /// <summary>
             /// Create Branches of the Tree (Rest of the rounds after Round 1)
             /// </summary>
+            /// 
+
+            int NextMatchupId = Matchups.Last().Id;
             while (Nodes.Count > 1)
             {
                 Node Node = new();
-                MatchupModel TmpTeam = new MatchupModel() { Id = 0, Active = false };
+                MatchupModel TmpTeam = new MatchupModel() { Id = NextMatchupId, Active = false };
+                NextMatchupId++;
 
                 Node.Data = TmpTeam;
                 Node.Left = Nodes.Dequeue();
