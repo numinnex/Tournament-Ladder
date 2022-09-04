@@ -91,20 +91,25 @@ namespace Tournament_Ladder
         {
 
             MatchupModel mu = MatchupsListBox.SelectedItem as MatchupModel;
-            if (mu.TeamsCompeting.Count > 1)
+            if (mu != null)
             {
-                mu.Winner = mu.TeamsCompeting[team];
-                if (mu.Round == TournamentLogic.Rounds.Count)
-                    MessageBox.Show($"Congratulations to {mu.Winner.Name} for winning");
+                if (mu.TeamsCompeting.Count > 1)
+                {
+                    mu.Winner = mu.TeamsCompeting[team];
+                    if (mu.Round == TournamentLogic.Rounds.Count)
+                        MessageBox.Show($"Congratulations to {mu.Winner.Name} for winning");
 
-                TournamentLogic.UpdateMatchups(TournamentLadder);
-                LoadMatchupsByRounds();
-                WireUpMatchupBox();
+                    TournamentLogic.UpdateMatchups(TournamentLadder);
+                    LoadMatchupsByRounds();
+                    WireUpMatchupBox();
 
+                }
+                else
+                    MessageBox.Show("There are no teams to set the winner for");
             }
-
             else
-                MessageBox.Show("There are no teams to set the winner for");
+                MessageBox.Show("There are no matchups to set winner for");
+          
 
         }
 
