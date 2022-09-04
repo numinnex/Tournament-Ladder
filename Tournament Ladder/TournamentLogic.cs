@@ -31,8 +31,8 @@ namespace Tournament_Ladder
             Matchups.Clear();
             ladder.PostOrder(ladder.Root, AdvanceTeams);
             ladder.PostOrder(ladder.Root, SetupMatchups);
-            //        Teams.Clear();
-            //        CollectTeams(Matchups);
+            Teams.Clear();
+            CollectTeams(Matchups);
 
         }
 
@@ -44,7 +44,7 @@ namespace Tournament_Ladder
             if (root == null)
                 return;
 
-            if (root.Data.Completed == false && root.Left != null && root.Right != null)
+            if (root.Data.Completed == false && root.Data.Round > 1)
             {
                 if (root.Left.Data.Winner != null && !root.Left.Data.Completed)
                 {
@@ -73,20 +73,27 @@ namespace Tournament_Ladder
                 return;
         }
 
-        
-            private static void CollectTeams(List<MatchupModel> mu)
-             {
 
-                foreach (MatchupModel m in mu)
+        private static void CollectTeams(List<MatchupModel> mu)
+        {
+
+            foreach (MatchupModel m in mu)
+            {
+
+                if (!m.Completed)
                 {
-                
-                    Teams.Add(m.Winner);
-                               
+                    foreach (var t in m.TeamsCompeting)
+                    {
+                        Teams.Add(t);
+                    }
                 }
+
+
             }
+        }
 
 
-            private static void SetupMatchups(Node root)
+        private static void SetupMatchups(Node root)
             {
                 if(!root.Data.Completed)
                      Matchups.Add(root.Data);

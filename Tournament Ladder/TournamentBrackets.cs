@@ -32,7 +32,7 @@ namespace Tournament_Ladder
              WireUpRoundsDropdown();
              LoadMatchupsByRounds();
              WireUpMatchupBox();
-            //WireUpTeamsBox();
+             WireUpTeamsBox();
         }
 
         private void WireUpRoundsDropdown()
@@ -63,10 +63,10 @@ namespace Tournament_Ladder
         }
         private void WireUpTeamsBox()
         {
-        //    displayTeamsBox.DataSource = null;
-        //    displayTeamsBox.DataSource = TournamentLogic.Teams.Where(x => x.Name != null).ToList().OrderByDescending(x => x.Name).Reverse().ToList();
-        //    displayTeamsBox.DisplayMember = "Name";
-         }
+            displayTeamsBox.DataSource = null;
+            displayTeamsBox.DataSource = TournamentLogic.Teams.Where(x => x.Name != null).ToList().OrderByDescending(x => x.Name).Reverse().ToList();
+            displayTeamsBox.DisplayMember = "Name";
+        }
 
         private void roundsComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -78,31 +78,33 @@ namespace Tournament_Ladder
         private void teamOneWinnerButton_Click(object sender, EventArgs e)
         {
             MarkTeamAsWinner(0);
-            //    WireUpTeamsBox();
+            WireUpTeamsBox();
         }
 
         private void teamTwoWinnerButton_Click(object sender, EventArgs e)
         {
             MarkTeamAsWinner(1);
-            //    WireUpTeamsBox();
+            WireUpTeamsBox();
 
         }
         private void MarkTeamAsWinner(int team)
         {
 
             MatchupModel mu = MatchupsListBox.SelectedItem as MatchupModel;
-            if (mu != null)
-                mu.Winner = mu.TeamsCompeting[team];
-
-            if (mu != null)
+            if (mu.TeamsCompeting.Count > 1)
             {
+                mu.Winner = mu.TeamsCompeting[team];
                 if (mu.Round == TournamentLogic.Rounds.Count)
-                    MessageBox.Show($"Congratulations to {mu.Winner} for winning");
+                    MessageBox.Show($"Congratulations to {mu.Winner.Name} for winning");
 
                 TournamentLogic.UpdateMatchups(TournamentLadder);
                 LoadMatchupsByRounds();
                 WireUpMatchupBox();
+
             }
+
+            else
+                MessageBox.Show("There are no teams to set the winner for");
 
         }
 

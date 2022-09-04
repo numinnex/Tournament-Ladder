@@ -18,22 +18,25 @@ namespace Tournament_Ladder.Models
         public bool Active { get; set; }
         public bool Completed { get; set; } = false;
 
-        /// <summary>
-        /// DisplayName property used by Teams ListBox in TournamentBrackets Form
-        /// </summary>
         public string DisplayName
         {
             get
             {
                 string output = "";
+
                 if(TeamsCompeting.Count == 0)
                 {
                     output = "TBD";
                     output += $" Round - {Round} muId {Id}";
                 }
-          
+                if(TeamsCompeting.Count == 1)
+                {
+                    output = TeamsCompeting[0].Name;
+                    output += " vs TBD";
+                    output += $" Round - {Round} muID {Id}";
 
-                if (TeamsCompeting != null)
+                }
+                else
                 {
                     foreach (var tm in TeamsCompeting)
                     {
@@ -42,17 +45,21 @@ namespace Tournament_Ladder.Models
                             if (output.Length == 0)
                             {
                                 output = tm.Name;
+                                output += " vs";
                             }
                             else
                             {
-                                output += $" vs {tm.Name}";
+                                output += $" {tm.Name}";
                                 output += $" Round - {Round} muID {Id}";
                             }
                         }
-                        
 
-                    } 
+
+                    }
+
                 }
+                
+
                 return output;
 
             }

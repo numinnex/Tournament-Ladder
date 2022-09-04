@@ -33,7 +33,6 @@ namespace Tournament_Ladder
         public static List<MatchupModel> CreateMatchups(int teamsCount)
         {
             
-            //int TeamsCount = 8;
             /// <summary>
             /// Create Teams and randomize order
             /// </summary>
