@@ -11,122 +11,89 @@ namespace Tournament_Ladder
 {
     public static class TournamentLogic
     {
-       // public static List<TeamModel> Teams = new();
+        public static List<TeamModel> Teams = new();
         public static List<int> Rounds = new();
         public static List<MatchupModel> Matchups = new();
-        //private static int matchupId = 1;
 
-        /// <summary>
-        /// Initializes the tournament
-        /// </summary>
-        /// <param name="ladder"></param>
+        
         public static void InitializeTournament(Tree ladder)
         {
 
             ladder.PostOrder(ladder.Root, SetupRounds);
             ladder.PostOrder(ladder.Root, SetupMatchups);
-            //CollectTeams(Matchups);
+            CollectTeams(Matchups);
 
             CollectRounds(ladder);
         }
-        //    /// <summary>
-        //    /// Updates the matchup when a team scores victory
-        //    /// </summary>
-        //    /// <param name="ladder"></param>
-            public static void UpdateMatchups(Tree ladder)
-            {
-        //        Matchups.Clear();
-        //        ladder.PostOrder(ladder.Root, MarkLosers);
-        //        ladder.PostOrder(ladder.Root, AdvanceTeams);
-        //        ladder.PostOrder(ladder.Root, UpdateMatchup);
-        //        Teams.Clear();
-        //        CollectTeams(Matchups);
 
+        public static void UpdateMatchups(Tree ladder)
+        {
+            Matchups.Clear();
+            ladder.PostOrder(ladder.Root, AdvanceTeams);
+            ladder.PostOrder(ladder.Root, SetupMatchups);
+            //        Teams.Clear();
+            //        CollectTeams(Matchups);
+
+        }
+
+     
+
+
+        private static void AdvanceTeams (Node root)
+          {
+            if (root == null)
+                return;
+
+            if (root.Data.Completed == false && root.Left != null && root.Right != null)
+            {
+                if (root.Left.Data.Winner != null && !root.Left.Data.Completed)
+                {
+                   
+                    root.Data.TeamsCompeting.Add(root.Left.Data.Winner);
+                    root.Left.Data.Completed = true;
+                    //if (root.Data.TeamsCompeting.Count() == 2)
+                    //root.Data.Active = true;
+
+                }
+                else if (root.Right.Data.Winner != null && !root.Right.Data.Completed)
+                {
+                   
+                    
+                    root.Data.TeamsCompeting.Add(root.Right.Data.Winner);
+                    root.Right.Data.Completed = true;
+                    //if (root.Data.TeamsCompeting.Count() == 2)
+                    // root.Data.Active = true;
+
+                }
+
+                else
+                    return;
             }
-        //    /// <summary>
-        //    /// Marks the losers in a matchup (redundant but can be useful when implementing Saving/Loading functionality)
-        //    /// </summary>
-        //    /// <param name="root"></param>
-            private static void MarkLosers(Node root)
-            {
-        //        if (root.Data.Id == 0)
-        //            if (root.Left.Data.Winner == true)
-        //                root.Right.Data.Winner = false;
-        //            else if (root.Right.Data.Winner == true)
-        //                root.Left.Data.Winner = false;
-            }
+            else
+                return;
+        }
 
-        //    /// <summary>
-        //    /// Advances the teams on the Binary Tree (Tournament Ladder)
-        //    /// </summary>
-        //    /// <param name="root"></param>
-            private static void AdvanceTeams (Node root)
-            {
-        //            if (root == null)
-        //                return;
-
-        //            if (root.Data.Id == 0)
-        //            {
-        //                if (root.Left.Data.Winner == true)
-        //                {
-        //                    Node tmp = new();
-        //                    tmp.Data = new();
-        //                    tmp.Data.MatchupId = root.Data.MatchupId;
-        //                    root.Data = root.Left.Data;
-        //                    root.Data.MatchupId = tmp.Data.MatchupId;
-        //                    root.Data.Winner = null;
-        //                    root.Data.Round++;
-        //                    root.Left = null;
-        //                    root.Right = null;
-
-        //                }
-        //                else if (root.Right.Data.Winner == true)
-        //                {
-        //                    Node tmp = new();
-        //                    tmp.Data = new();
-        //                    tmp.Data.MatchupId = root.Data.MatchupId;
-        //                    root.Data = root.Right.Data;
-        //                    root.Data.MatchupId = tmp.Data.MatchupId;
-        //                    root.Data.Winner = null;
-        //                    root.Data.Round++;
-        //                    root.Left = null;
-        //                    root.Right = null;  
-        //                }
-        //                else
-        //                    return;
-        //            }
-               }
-
-        //    /// <summary>
-        //    /// Collects teams displayed in Teams Listbox in TournamentBrackets Form
-        //    /// </summary>
-        //    /// <param name="mu"></param>
+        
             private static void CollectTeams(List<MatchupModel> mu)
              {
-            //        foreach(MatchupModel m in mu)
-            //        {
-            //            if (m.TeamsCompeting != null)
-            //                foreach (TeamModel team in m.TeamsCompeting)
-            //                    if(team.Winner == null || team.Winner == true)
-            //                        Teams.Add(team);
-            //        }
-            //    }
 
-            //    /// <summary>
-            //    /// Creates Matchups 
-            //    /// </summary>
-            //    /// <param name="root"></param>
+                foreach (MatchupModel m in mu)
+                {
+                
+                    Teams.Add(m.Winner);
+                               
+                }
             }
+
+
             private static void SetupMatchups(Node root)
             {
-                 Matchups.Add(root.Data);
+                if(!root.Data.Completed)
+                     Matchups.Add(root.Data);
 
             }
 
-        //    /// <summary>
-        //    /// Updates the Matchups when team advances
-        //    /// </summary>
-        //    /// <param name="root"></param>
+    
             private static void UpdateMatchup(Node root)
             {
         //        MatchupModel mu = new();
@@ -151,10 +118,7 @@ namespace Tournament_Ladder
         //        }
 
             }
-        //    /// <summary>
-        //    /// Collects the rounds displayed in RoundsDropDown in TournamentBrackets Form
-        //    /// </summary>
-        //    /// <param name="ladder"></param>
+        
             private static void CollectRounds(Tree ladder)
             {
                 int maxRound = ladder.Height();
@@ -162,10 +126,7 @@ namespace Tournament_Ladder
                     Rounds.Add(i);
 
             }   
-        //    /// <summary>
-        //    /// Assigns the round property for each team 
-        //    /// </summary>
-        //    /// <param name="root"></param>
+     
             private static void SetupRounds(Node root)
             {
                 root.Data.Round = root.Depth();

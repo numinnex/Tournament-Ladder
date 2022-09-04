@@ -33,8 +33,6 @@ namespace Tournament_Ladder
              LoadMatchupsByRounds();
              WireUpMatchupBox();
             //WireUpTeamsBox();
-
-
         }
 
         private void WireUpRoundsDropdown()
@@ -75,45 +73,36 @@ namespace Tournament_Ladder
             LoadMatchupsByRounds();
             WireUpMatchupBox();
         }
-        /// <summary>
-        /// Marks team one as winner
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>   
-
+      
 
         private void teamOneWinnerButton_Click(object sender, EventArgs e)
         {
-            //    MarkTeamAsWinner(0);
+            MarkTeamAsWinner(0);
             //    WireUpTeamsBox();
         }
-        ///// <summary>
-        ///// Marks team two as winner
-        ///// </summary>
-        ///// <param name="sender"></param>
-        ///// <param name="e"></param>
+
         private void teamTwoWinnerButton_Click(object sender, EventArgs e)
         {
-            //    MarkTeamAsWinner(1);
+            MarkTeamAsWinner(1);
             //    WireUpTeamsBox();
 
         }
         private void MarkTeamAsWinner(int team)
         {
 
-            //    MatchupModel mu = MatchupsListBox.SelectedItem as MatchupModel;
-            //    if (mu != null)
-            //        mu.TeamsCompeting[team].Winner = true;
+            MatchupModel mu = MatchupsListBox.SelectedItem as MatchupModel;
+            if (mu != null)
+                mu.Winner = mu.TeamsCompeting[team];
 
-            //    if (mu != null)
-            //    {
-            //        if (mu.TeamsCompeting.First().Round == TournamentLogic.Rounds.Count)
-            //            MessageBox.Show($"Congratulations to {mu.TeamsCompeting.Where(x => x.Winner == true).ToList().First().Name} for winning");
+            if (mu != null)
+            {
+                if (mu.Round == TournamentLogic.Rounds.Count)
+                    MessageBox.Show($"Congratulations to {mu.Winner} for winning");
 
-            //        TournamentLogic.UpdateMatchups(TournamentLadder);
-            //        LoadMatchupsByRounds();
-            //        WireUpMatchupBox();
-            //}
+                TournamentLogic.UpdateMatchups(TournamentLadder);
+                LoadMatchupsByRounds();
+                WireUpMatchupBox();
+            }
 
         }
 

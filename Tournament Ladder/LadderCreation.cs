@@ -101,7 +101,7 @@ namespace Tournament_Ladder
             while (Nodes.Count > 1)
             {
                 Node Node = new();
-                MatchupModel TmpTeam = new MatchupModel() { Id = NextMatchupId, Active = false };
+                MatchupModel TmpTeam = new MatchupModel() { Id = NextMatchupId, Active = false , TeamsCompeting = new() };
                 NextMatchupId++;
 
                 Node.Data = TmpTeam;

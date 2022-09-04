@@ -13,10 +13,11 @@ namespace Tournament_Ladder.Models
         /// Teams playing in current matchup
         /// </summary>
         public List<TeamModel>? TeamsCompeting { get; set; }
-        public TeamModel? Winner { get; set; }
+        public TeamModel? Winner { get; set; } = null;
         public int Round { get; set; }
-
         public bool Active { get; set; }
+        public bool Completed { get; set; } = false;
+
         /// <summary>
         /// DisplayName property used by Teams ListBox in TournamentBrackets Form
         /// </summary>
@@ -25,9 +26,12 @@ namespace Tournament_Ladder.Models
             get
             {
                 string output = "";
-
-                if (TeamsCompeting == null)
-                    output = $"NULL Round - {Round} muId {Id}";
+                if(TeamsCompeting.Count == 0)
+                {
+                    output = "TBD";
+                    output += $" Round - {Round} muId {Id}";
+                }
+          
 
                 if (TeamsCompeting != null)
                 {
@@ -45,12 +49,7 @@ namespace Tournament_Ladder.Models
                                 output += $" Round - {Round} muID {Id}";
                             }
                         }
-                        else
-                        {
-                            output = "TBD";
-                            output += $" Round - {Round} muId {Id}";
-                            break;
-                        }
+                        
 
                     } 
                 }
