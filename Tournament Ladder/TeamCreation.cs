@@ -10,15 +10,11 @@ namespace Tournament_Ladder
 
     public static class TeamCreation
     {
-        public static Tree CreateTeams(int teamsCount)
-        {
-         
-            Queue<Node> Nodes = new();
-            List<TeamModel> teams = new List<TeamModel>();
 
-            /// <summary>
-            /// Create Teams
-            /// </summary>
+
+        private static List<TeamModel> CreateTeams(int teamsCount)
+        {
+            List<TeamModel> teams = new List<TeamModel>();
             for (int i = 1; i <= teamsCount; i++)
             {
                 TeamModel TmpTeam = new();
@@ -27,6 +23,20 @@ namespace Tournament_Ladder
                 //TmpTeam.Round = 1;
                 teams.Add(TmpTeam);
             }
+            return teams;
+
+        }
+
+        public static Tree CreateMatchups(int teamsCount)
+        {
+         
+            Queue<Node> Nodes = new();
+            
+
+            /// <summary>
+            /// Create Teams
+            /// </summary>
+            
 
             /// <summary>
             /// Create Leafs for the Tree (First Round of Tournament) 
