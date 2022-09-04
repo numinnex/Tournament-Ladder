@@ -18,7 +18,7 @@ namespace Tournament_Ladder
 
         private ILadderRequester _requester;
         private Tree TournamentLadder = new();
-        private List<MatchupModel> Matchups = TournamentLogic.Matchups;
+        //private List<MatchupModel> Matchups = TournamentLogic.Matchups;
         private List<MatchupModel> selectedMatchups = new();
 
         public TournamentBrackets(ILadderRequester requester)
@@ -30,34 +30,36 @@ namespace Tournament_Ladder
             TournamentLogic.InitializeTournament(TournamentLadder);
 
             WireUpRoundsDropdown();
-            LoadMatchupsByRounds();
-            WireUpMatchupBox();
-            WireUpTeamsBox();
+            //LoadMatchupsByRounds();
+             WireUpMatchupBox();
+            //WireUpTeamsBox();
 
 
         }
 
-        private void LoadMatchupsByRounds()
-        {
-            selectedMatchups.Clear();
-            int round = (int)roundsComboBox.SelectedItem;
-            foreach (var mu in Matchups)
-            {
-
-                if (mu != null)
-                {
-                    if (mu.TeamsCompeting.First().Round == round)
-                    {
-                        selectedMatchups.Add(mu);
-                    }
-                }
-            }
-        }
         private void WireUpRoundsDropdown()
         {
             roundsComboBox.DataSource = TournamentLogic.Rounds;
 
         }
+
+        private void LoadMatchupsByRounds()
+        {
+            //    selectedMatchups.Clear();
+            //    int round = (int)roundsComboBox.SelectedItem;
+            //    foreach (var mu in Matchups)
+            //    {
+
+            //        if (mu != null)
+            //        {
+            //            if (mu.TeamsCompeting.First().Round == round)
+            //            {
+            //                selectedMatchups.Add(mu);
+            //            }
+            //        }
+            //    }
+        }
+
         private void WireUpMatchupBox()
         {
             MatchupsListBox.DataSource = null;
@@ -66,53 +68,55 @@ namespace Tournament_Ladder
         }
         private void WireUpTeamsBox()
         {
-            displayTeamsBox.DataSource = null;
-            displayTeamsBox.DataSource = TournamentLogic.Teams.Where(x => x.Name != null).ToList().OrderByDescending(x => x.Name).Reverse().ToList();
-            displayTeamsBox.DisplayMember = "Name";
-        }
+        //    displayTeamsBox.DataSource = null;
+        //    displayTeamsBox.DataSource = TournamentLogic.Teams.Where(x => x.Name != null).ToList().OrderByDescending(x => x.Name).Reverse().ToList();
+        //    displayTeamsBox.DisplayMember = "Name";
+         }
 
         private void roundsComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            LoadMatchupsByRounds();
-            WireUpMatchupBox();
+            //    LoadMatchupsByRounds();
+            //    WireUpMatchupBox();
+            //}
+            ///// <summary>
+            ///// Marks team one as winner
+            ///// </summary>
+            ///// <param name="sender"></param>
+            ///// <param name="e"></param>
+            ///
         }
-        /// <summary>
-        /// Marks team one as winner
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void teamOneWinnerButton_Click(object sender, EventArgs e)
         {
-            MarkTeamAsWinner(0);
-            WireUpTeamsBox();
+            //    MarkTeamAsWinner(0);
+            //    WireUpTeamsBox();
         }
-        /// <summary>
-        /// Marks team two as winner
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        ///// <summary>
+        ///// Marks team two as winner
+        ///// </summary>
+        ///// <param name="sender"></param>
+        ///// <param name="e"></param>
         private void teamTwoWinnerButton_Click(object sender, EventArgs e)
         {
-            MarkTeamAsWinner(1);
-            WireUpTeamsBox();
+            //    MarkTeamAsWinner(1);
+            //    WireUpTeamsBox();
 
         }
         private void MarkTeamAsWinner(int team)
         {
 
-            MatchupModel mu = MatchupsListBox.SelectedItem as MatchupModel;
-            if (mu != null)
-                mu.TeamsCompeting[team].Winner = true;
+            //    MatchupModel mu = MatchupsListBox.SelectedItem as MatchupModel;
+            //    if (mu != null)
+            //        mu.TeamsCompeting[team].Winner = true;
 
-            if (mu != null)
-            {
-                if (mu.TeamsCompeting.First().Round == TournamentLogic.Rounds.Count)
-                    MessageBox.Show($"Congratulations to {mu.TeamsCompeting.Where(x => x.Winner == true).ToList().First().Name} for winning");
+            //    if (mu != null)
+            //    {
+            //        if (mu.TeamsCompeting.First().Round == TournamentLogic.Rounds.Count)
+            //            MessageBox.Show($"Congratulations to {mu.TeamsCompeting.Where(x => x.Winner == true).ToList().First().Name} for winning");
 
-                TournamentLogic.UpdateMatchups(TournamentLadder);
-                LoadMatchupsByRounds();
-                WireUpMatchupBox();
-            }
+            //        TournamentLogic.UpdateMatchups(TournamentLadder);
+            //        LoadMatchupsByRounds();
+            //        WireUpMatchupBox();
+            //}
 
         }
 
