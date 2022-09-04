@@ -8,9 +8,12 @@ using Tournament_Ladder.Models;
 namespace Tournament_Ladder
 {
 
-    public static class TeamCreation
+    public static class LadderCreation
     {
-
+        private static List<TeamModel> RandomizeTeams(List<TeamModel> teams)
+        {
+            return teams.OrderBy(x => Guid.NewGuid()).ToList();
+        }
 
         private static List<TeamModel> CreateTeams(int teamsCount)
         {
@@ -27,15 +30,24 @@ namespace Tournament_Ladder
 
         }
 
+        
         public static Tree CreateMatchups()
         {
+            
             int TeamsCount = 8;
-
+            /// <summary>
+            /// Create Teams and randomize order
+            /// </summary>
+            /// <returns></returns>
             List<TeamModel> teams = CreateTeams(TeamsCount);
+            RandomizeTeams(teams);
 
             List<MatchupModel> Matchups = new List<MatchupModel>();
 
-
+            /// <summary>
+            /// Create MatchupModels
+            /// </summary>
+            /// <returns></returns>
             for (int i = 0; i < teams.Count(); i+= 2)
             {
                 MatchupModel tmp = new();
@@ -46,17 +58,17 @@ namespace Tournament_Ladder
 
             }
 
-
+         
             /// <summary>
             /// Create Leafs for the Tree (First Round of Tournament) 
             /// </summary>
             /// 
 
             Queue<Node> Nodes = new();
-            foreach (var team in teams)
+            foreach (var matchup in Matchups)
             {
                 Node Node = new();
-                Node.Data = team;
+                Node.Data = matchup;
                 Node.Left = null;
                 Node.Right = null;
                 Nodes.Enqueue(Node);
