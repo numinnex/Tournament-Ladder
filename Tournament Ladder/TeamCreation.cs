@@ -27,20 +27,32 @@ namespace Tournament_Ladder
 
         }
 
-        public static Tree CreateMatchups(int teamsCount)
+        public static Tree CreateMatchups()
         {
-         
-            Queue<Node> Nodes = new();
-            
+            int TeamsCount = 8;
 
-            /// <summary>
-            /// Create Teams
-            /// </summary>
-            
+            List<TeamModel> teams = CreateTeams(TeamsCount);
+
+            List<MatchupModel> Matchups = new List<MatchupModel>();
+
+
+            for (int i = 0; i < teams.Count(); i+= 2)
+            {
+                MatchupModel tmp = new();
+                tmp.TeamsCompeting.Add(teams[i]);
+                tmp.TeamsCompeting.Add(teams[i + 1]);
+                tmp.Winner = null;
+                tmp.Round = 1;
+
+            }
+
 
             /// <summary>
             /// Create Leafs for the Tree (First Round of Tournament) 
             /// </summary>
+            /// 
+
+            Queue<Node> Nodes = new();
             foreach (var team in teams)
             {
                 Node Node = new();
