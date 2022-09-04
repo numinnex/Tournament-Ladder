@@ -69,42 +69,44 @@ namespace Tournament_Ladder
             }
         }
 
+        //TODO - REMOVE THAT SHIT
+
         /// <summary>
         /// Old Method of advancing teams
         /// </summary>
         /// <param name="root"></param>
-        public void MoveTeams(Node root)
-        {
-            if (root == null)
-                return;
+        //    public void MoveTeams(Node root)
+        //    {
+        //        if (root == null)
+        //            return;
 
-            if(root.Data.Id == 0)
-                if(root.Left.Data.Winner == true)
-                {
-                    Node tmp = new();
-                    tmp.Data = root.Left.Data;
-                    tmp.Left = null;
-                    tmp.Right = null;
-                    root.Data = tmp.Data;
-                    root.Left = tmp.Left;
-                    root.Right = tmp.Right;
+        //        if(root.Data.Id == 0)
+        //            if(root.Left.Data.Winner == true)
+        //            {
+        //                Node tmp = new();
+        //                tmp.Data = root.Left.Data;
+        //                tmp.Left = null;
+        //                tmp.Right = null;
+        //                root.Data = tmp.Data;
+        //                root.Left = tmp.Left;
+        //                root.Right = tmp.Right;
 
-                }
-                else if (root.Right.Data.Winner == true)
-                {
-                    Node tmp = new();
-                    tmp.Data = root.Right.Data;
-                    tmp.Left = null;
-                    tmp.Right = null;
-                    root.Data = tmp.Data;
-                    root.Left = tmp.Left;
-                    root.Right = tmp.Right;
-                }
-            MoveTeams(root.Left);
-            MoveTeams(root.Right);
-        }
+        //            }
+        //            else if (root.Right.Data.Winner == true)
+        //            {
+        //                Node tmp = new();
+        //                tmp.Data = root.Right.Data;
+        //                tmp.Left = null;
+        //                tmp.Right = null;
+        //                root.Data = tmp.Data;
+        //                root.Left = tmp.Left;
+        //                root.Right = tmp.Right;
+        //            }
+        //        MoveTeams(root.Left);
+        //        MoveTeams(root.Right);
+        //    }
 
-      
+
 
     }
 }

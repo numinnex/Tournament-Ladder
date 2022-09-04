@@ -30,16 +30,15 @@ namespace Tournament_Ladder
 
         }
 
-        
-        public static Tree CreateMatchups()
+        public static List<MatchupModel> CreateMatchups(int teamsCount)
         {
             
-            int TeamsCount = 8;
+            //int TeamsCount = 8;
             /// <summary>
             /// Create Teams and randomize order
             /// </summary>
             /// <returns></returns>
-            List<TeamModel> teams = CreateTeams(TeamsCount);
+            List<TeamModel> teams = CreateTeams(teamsCount);
             RandomizeTeams(teams);
 
             List<MatchupModel> Matchups = new List<MatchupModel>();
@@ -54,23 +53,34 @@ namespace Tournament_Ladder
             for (int i = 0; i < teams.Count(); i+= 2)
             {
                 MatchupModel tmp = new();
+                List<TeamModel> tmpTeamps = new();
+                tmpTeamps.Add(teams[i]);
+                tmpTeamps.Add(teams[i + 1]);
+
                 tmp.Id = mIdCounter;
-                tmp.TeamsCompeting.Add(teams[i]);
-                tmp.TeamsCompeting.Add(teams[i + 1]);
+                tmp.Active = true;
+                tmp.TeamsCompeting = tmpTeamps;
+                //tmp.TeamsCompeting.Add(teams[i + 1]);
                 tmp.Winner = null;
                 tmp.Round = 1;
                 mIdCounter++;
-
-
+                tmpTeamps = new();
             }
 
          
+            return Matchups;
+
+        }
+
+        public static Tree CreateLadder(int teamsCount)
+        {
+            List<MatchupModel> Matchups = CreateMatchups(teamsCount);
+            Queue<Node> Nodes = new();
+
             /// <summary>
             /// Create Leafs for the Tree (First Round of Tournament) 
             /// </summary>
             /// 
-
-            Queue<Node> Nodes = new();
             foreach (var matchup in Matchups)
             {
                 Node Node = new();
@@ -86,7 +96,7 @@ namespace Tournament_Ladder
             while (Nodes.Count > 1)
             {
                 Node Node = new();
-                MatchupModel TmpTeam = new MatchupModel() { Id = 0 };
+                MatchupModel TmpTeam = new MatchupModel() { Id = 0, Active = false };
 
                 Node.Data = TmpTeam;
                 Node.Left = Nodes.Dequeue();
@@ -108,11 +118,8 @@ namespace Tournament_Ladder
 
             }
             return ladder;
-
         }
          
-
-        
 
     }
 }

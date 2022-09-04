@@ -14,7 +14,7 @@ namespace Tournament_Ladder
 {
     public partial class TournamentBrackets : Form
     {
-        
+
 
         private ILadderRequester _requester;
         private Tree TournamentLadder = new();
@@ -49,14 +49,14 @@ namespace Tournament_Ladder
                     if (mu.TeamsCompeting.First().Round == round)
                     {
                         selectedMatchups.Add(mu);
-                    } 
+                    }
                 }
             }
         }
         private void WireUpRoundsDropdown()
         {
             roundsComboBox.DataSource = TournamentLogic.Rounds;
-            
+
         }
         private void WireUpMatchupBox()
         {
@@ -101,7 +101,7 @@ namespace Tournament_Ladder
         {
 
             MatchupModel mu = MatchupsListBox.SelectedItem as MatchupModel;
-            if(mu != null)
+            if (mu != null)
                 mu.TeamsCompeting[team].Winner = true;
 
             if (mu != null)
@@ -111,11 +111,11 @@ namespace Tournament_Ladder
 
                 TournamentLogic.UpdateMatchups(TournamentLadder);
                 LoadMatchupsByRounds();
-                WireUpMatchupBox(); 
+                WireUpMatchupBox();
             }
-            
+
         }
 
-        
+
     }
 }

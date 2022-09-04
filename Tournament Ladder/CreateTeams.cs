@@ -31,10 +31,10 @@ namespace Tournament_Ladder
             if (Log2NumberOfTeams % 1 == 0 && createTeamsNumeric.Value > 1)
             {
                 ladder = new();
-                ladder = LadderCreation.CreateMatchups((int)createTeamsNumeric.Value);
-                TournamentBrackets frm = new TournamentBrackets(this);
-                frm.ShowDialog();
-                this.Close();
+                ladder = LadderCreation.CreateLadder((int)createTeamsNumeric.Value);
+                //TournamentBrackets frm = new TournamentBrackets(this);
+                //frm.ShowDialog();
+                //this.Close();
                 
             }
             else
