@@ -32,9 +32,9 @@ namespace Tournament_Ladder
             {
                 ladder = new();
                 ladder = LadderCreation.CreateLadder((int)createTeamsNumeric.Value);
-                //TournamentBrackets frm = new TournamentBrackets(this);
-                //frm.ShowDialog();
-                //this.Close();
+                TournamentBrackets frm = new TournamentBrackets(this);
+                frm.ShowDialog();
+                this.Close();
                 
             }
             else

@@ -97,7 +97,7 @@ namespace Tournament_Ladder
             /// </summary>
             /// 
 
-            int NextMatchupId = Matchups.Last().Id;
+            int NextMatchupId = Matchups.Last().Id+1;
             while (Nodes.Count > 1)
             {
                 Node Node = new();
