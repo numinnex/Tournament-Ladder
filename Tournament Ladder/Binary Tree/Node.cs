@@ -9,9 +9,9 @@ namespace Tournament_Ladder
 {
     public class Node
     {
-        public MatchupModel Data { get; set; }
-        public Node Left { get; set; }
-        public Node Right { get; set; }
+        public MatchupModel? Data { get; set; }
+        public Node? Left { get; set; }
+        public Node? Right { get; set; }
 
         public int Depth()
         {
