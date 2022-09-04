@@ -53,15 +53,9 @@ namespace Tournament_Ladder.Models
                                 output += $" Round - {Round} muID {Id}";
                             }
                         }
-
-
                     }
-
                 }
-                
-
                 return output;
-
             }
 
         }

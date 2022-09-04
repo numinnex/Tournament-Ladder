@@ -64,7 +64,7 @@ namespace Tournament_Ladder
         private void WireUpTeamsBox()
         {
             displayTeamsBox.DataSource = null;
-            displayTeamsBox.DataSource = TournamentLogic.Teams.Where(x => x.Name != null).ToList().OrderByDescending(x => x.Name).Reverse().ToList();
+            displayTeamsBox.DataSource = TournamentLogic.Teams.OrderByDescending(x => x.Id).Reverse().ToList();
             displayTeamsBox.DisplayMember = "Name";
         }
 

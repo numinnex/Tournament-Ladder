@@ -47,6 +47,11 @@
             // createTeamsNumeric
             // 
             this.createTeamsNumeric.Location = new System.Drawing.Point(150, 43);
+            this.createTeamsNumeric.Maximum = new decimal(new int[] {
+            512,
+            0,
+            0,
+            0});
             this.createTeamsNumeric.Name = "createTeamsNumeric";
             this.createTeamsNumeric.Size = new System.Drawing.Size(60, 23);
             this.createTeamsNumeric.TabIndex = 1;
