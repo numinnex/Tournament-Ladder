@@ -16,6 +16,7 @@ namespace Tournament_Ladder.Models
         public TeamModel? Winner { get; set; }
         public int Round { get; set; }
 
+        public bool Active { get; set; }
         /// <summary>
         /// DisplayName property used by Teams ListBox in TournamentBrackets Form
         /// </summary>

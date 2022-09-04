@@ -48,13 +48,19 @@ namespace Tournament_Ladder
             /// Create MatchupModels
             /// </summary>
             /// <returns></returns>
+
+            int mIdCounter = 1;
+
             for (int i = 0; i < teams.Count(); i+= 2)
             {
                 MatchupModel tmp = new();
+                tmp.Id = mIdCounter;
                 tmp.TeamsCompeting.Add(teams[i]);
                 tmp.TeamsCompeting.Add(teams[i + 1]);
                 tmp.Winner = null;
                 tmp.Round = 1;
+                mIdCounter++;
+
 
             }
 
@@ -80,7 +86,7 @@ namespace Tournament_Ladder
             while (Nodes.Count > 1)
             {
                 Node Node = new();
-                TeamModel TmpTeam = new TeamModel() { Id = 0 };
+                MatchupModel TmpTeam = new MatchupModel() { Id = 0 };
 
                 Node.Data = TmpTeam;
                 Node.Left = Nodes.Dequeue();
