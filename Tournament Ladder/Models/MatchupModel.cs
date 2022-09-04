@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Tournament_Ladder.Interfaces;
 
 namespace Tournament_Ladder.Models
 {
@@ -12,8 +13,8 @@ namespace Tournament_Ladder.Models
         /// <summary>
         /// Teams playing in current matchup
         /// </summary>
-        public List<TeamModel>? TeamsCompeting { get; set; }
-        public TeamModel? Winner { get; set; } = null;
+        public List<ITeam>? TeamsCompeting { get; set; }
+        public ITeam? Winner { get; set; } = null;
         public int Round { get; set; }
         public bool Active { get; set; }
         public bool Completed { get; set; } = false;

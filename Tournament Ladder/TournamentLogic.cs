@@ -5,13 +5,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms.VisualStyles;
+using Tournament_Ladder.Interfaces;
 using Tournament_Ladder.Models;
 
 namespace Tournament_Ladder
 {
     public static class TournamentLogic
     {
-        public static List<TeamModel> Teams = new();
+        public static List<ITeam> Teams = new();
         public static List<int> Rounds = new();
         public static List<MatchupModel> Matchups = new();
 

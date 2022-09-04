@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Tournament_Ladder.Interfaces;
 using Tournament_Ladder.Models;
 
 namespace Tournament_Ladder
@@ -10,14 +11,14 @@ namespace Tournament_Ladder
 
     public static class LadderCreation
     {
-        private static List<TeamModel> RandomizeTeams(List<TeamModel> teams)
+        private static List<ITeam> RandomizeTeams(List<ITeam> teams)
         {
             return teams.OrderBy(x => Guid.NewGuid()).ToList();
         }
 
-        private static List<TeamModel> CreateTeams(int teamsCount)
+        private static List<ITeam> CreateTeams(int teamsCount)
         {
-            List<TeamModel> teams = new List<TeamModel>();
+            List<ITeam> teams = new List<ITeam>();
             for (int i = 1; i <= teamsCount; i++)
             {
                 TeamModel TmpTeam = new();
@@ -33,11 +34,12 @@ namespace Tournament_Ladder
         public static List<MatchupModel> CreateMatchups(int teamsCount)
         {
             
+
             /// <summary>
             /// Create Teams and randomize order
             /// </summary>
             /// <returns></returns>
-            List<TeamModel> teams = CreateTeams(teamsCount);
+            List<ITeam> teams = CreateTeams(teamsCount);
             teams = RandomizeTeams(teams);
 
             List<MatchupModel> Matchups = new List<MatchupModel>();
@@ -49,10 +51,11 @@ namespace Tournament_Ladder
 
             int mIdCounter = 1;
 
+
             for (int i = 0; i < teams.Count(); i+= 2)
             {
                 MatchupModel tmp = new();
-                List<TeamModel> tmpTeamps = new();
+                List<ITeam> tmpTeamps = new();
                 tmpTeamps.Add(teams[i]);
                 tmpTeamps.Add(teams[i + 1]);
 

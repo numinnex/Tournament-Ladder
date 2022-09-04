@@ -3,18 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Tournament_Ladder.Interfaces;
 
-namespace Tournament_Ladder.Models
+namespace Tournament_Ladder.Interfaces
 {
-    public class TeamModel:ITeam
+    public interface ITeam
     {
-
         public int Id { get; set; }
         public string? Name { get; set; }
- 
-
-
     }
-
 }
