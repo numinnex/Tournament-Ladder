@@ -13,6 +13,8 @@ namespace Tournament_Ladder.Models
         /// Teams playing in current matchup
         /// </summary>
         public List<TeamModel>? TeamsCompeting { get; set; }
+        public TeamModel? Winner { get; set; }
+        public int Round { get; set; }
 
         /// <summary>
         /// DisplayName property used by Teams ListBox in TournamentBrackets Form
