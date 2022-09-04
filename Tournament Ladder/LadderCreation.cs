@@ -60,9 +60,7 @@ namespace Tournament_Ladder
                 tmpTeamps.Add(teams[i + 1]);
 
                 tmp.Id = mIdCounter;
-                tmp.Active = true;
                 tmp.TeamsCompeting = tmpTeamps;
-                //tmp.TeamsCompeting.Add(teams[i + 1]);
                 tmp.Winner = null;
                 tmp.Round = 1;
                 
@@ -103,7 +101,7 @@ namespace Tournament_Ladder
             while (Nodes.Count > 1)
             {
                 Node Node = new();
-                MatchupModel TmpTeam = new MatchupModel() { Id = NextMatchupId, Active = false , TeamsCompeting = new() };
+                MatchupModel TmpTeam = new MatchupModel() { Id = NextMatchupId,  TeamsCompeting = new() };
                 NextMatchupId++;
 
                 Node.Data = TmpTeam;

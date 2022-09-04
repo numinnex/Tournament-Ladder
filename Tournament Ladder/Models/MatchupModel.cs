@@ -16,7 +16,6 @@ namespace Tournament_Ladder.Models
         public List<ITeam>? TeamsCompeting { get; set; }
         public ITeam? Winner { get; set; } = null;
         public int Round { get; set; }
-        public bool Active { get; set; }
         public bool Completed { get; set; } = false;
 
         public string DisplayName
