@@ -8,7 +8,7 @@
 <img src="https://user-images.githubusercontent.com/112548209/187738210-b7adf2a3-7ba3-4924-a917-a35e62f85701.png">
 </div>
 
-`Tournament Ladder` is a rig for creating a tournament with power of 2 team count 
+`Tournament Ladder` is a rig for creating a tournament with log2n team count 
 
 # TODO
 <s>1.Change the binary tree structure to operate on matchups instead of teams</s><br>
